@@ -782,12 +782,38 @@
         .fade-in-up {
             animation: fadeInUp 0.6s ease-out;
         }
+        @keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
     </style>
 </head>
 <body>
     <!-- Hero Animation Container -->
     <div class="hero-container" id="heroContainer">
         <h1 class="logo-animation" id="logoAnimation">VNG</h1>
+         <div class="scroll-indicator" id="scrollIndicator" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 99; animation: float 2s ease-in-out infinite;">
+    <span class="scroll-arrow" style="font-size: 30px; display: block; animation: bounce 1.5s infinite;">💅</span>
+    <p class="scroll-text" style="margin: 5px 0 0; font-size: 14px; color: #999; font-family: 'Poppins', sans-serif;">Scroll om meer te ontdekken</p>
+</div>
+
     </div>
 
     <!-- Navigation -->
@@ -950,6 +976,15 @@
     </footer>
 
     <script>
+        
+  window.addEventListener("scroll", function () {
+    const indicator = document.getElementById("scrollIndicator");
+    if (window.scrollY > 50) {
+      indicator.style.display = "none";
+    }
+  });
+
+
         // VNG Animation Logic
         function initHeroAnimation() {
             const heroContainer = document.getElementById('heroContainer');
